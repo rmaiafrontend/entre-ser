@@ -1,4 +1,4 @@
-import { Cormorant_Garamond, DM_Sans } from 'next/font/google'
+import { Cormorant_Garamond, DM_Sans, Onest } from 'next/font/google'
 
 export const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -10,4 +10,9 @@ export const cormorant = Cormorant_Garamond({
 export const dmSans = DM_Sans({
   subsets: ['latin'],
   variable: '--font-body',
+})
+
+export const onest = Onest({
+  subsets: ['latin'],
+  variable: '--font-onest',
 })

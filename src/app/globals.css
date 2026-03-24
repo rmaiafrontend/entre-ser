@@ -44,7 +44,7 @@
 
   /* Tipografia */
   --font-display: var(--font-display, 'Georgia', serif);
-  --font-body:    var(--font-body, system-ui, sans-serif);
+  --font-body:    var(--font-onest, var(--font-body, system-ui, sans-serif));
 
   /* Border Radius customizados */
   --radius-card:  22px;

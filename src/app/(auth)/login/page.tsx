@@ -3,135 +3,136 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Container } from '@/components/ui/container'
-import { ESButton } from '@/components/ui/button'
-import { TextInput } from '@/components/ui/text-input'
-import { ESDivider } from '@/components/ui/divider'
 
-function WhatsAppIcon() {
+function IconArrowLeft() {
   return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
-        fill="currentColor"
-      />
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" />
+    </svg>
+  )
+}
+function IconArrowRight() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+    </svg>
+  )
+}
+function IconMail() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-plum/30">
+      <rect x="2" y="4" width="20" height="16" rx="2" /><polyline points="22 7 12 13 2 7" />
+    </svg>
+  )
+}
+function IconLock() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-plum/30">
+      <rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
     </svg>
   )
 }
 
 export default function LoginPage() {
   const router = useRouter()
-
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
   const [errors, setErrors] = useState<Record<string, string>>({})
 
   function handleLogin() {
-    const newErrors: Record<string, string> = {}
-
-    if (!email.trim()) {
-      newErrors.email = 'Por favor, informe seu e-mail'
-    }
-    if (!senha.trim()) {
-      newErrors.senha = 'Por favor, informe sua senha'
-    }
-
-    setErrors(newErrors)
-
-    if (Object.keys(newErrors).length === 0) {
-      router.push('/home')
-    }
+    const e: Record<string, string> = {}
+    if (!email.trim()) e.email = 'Informe seu e-mail'
+    if (!senha.trim()) e.senha = 'Informe sua senha'
+    setErrors(e)
+    if (Object.keys(e).length === 0) router.push('/home')
   }
 
   return (
-    <Container size="sm" className="min-h-screen py-8">
-      {/* Voltar */}
-      <Link
-        href="/landing"
-        className="inline-flex items-center gap-1 text-sm text-plum/60 hover:text-mauve transition-colors"
-      >
-        &larr; Voltar
-      </Link>
+    <div className="min-h-screen bg-gradient-to-br from-plum via-plum-mid to-mauve-dark flex flex-col relative overflow-hidden">
+      {/* Decorative orbs */}
+      <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/8 blur-3xl" />
+      <div className="pointer-events-none absolute -left-16 bottom-20 h-48 w-48 rounded-full bg-white/8 blur-3xl" />
+      <div className="pointer-events-none absolute right-10 bottom-40 h-24 w-24 rounded-full bg-mauve/20 blur-2xl" />
 
-      {/* Logo */}
-      <div className="mt-8 flex justify-center">
-        <span className="font-display text-2xl text-plum">entre ser</span>
-      </div>
-
-      {/* Titulo */}
-      <h1 className="mt-6 text-center font-display text-xl font-medium text-plum">
-        Entrar
-      </h1>
-
-      {/* Formulario */}
-      <div className="mt-8 flex flex-col gap-5">
-        <TextInput
-          label="E-mail"
-          type="email"
-          placeholder="maria@email.com"
-          value={email}
-          onChange={setEmail}
-          isRequired
-          errorMessage={errors.email}
-        />
-
-        <div className="flex flex-col gap-1.5">
-          <TextInput
-            label="Senha"
-            type="password"
-            placeholder="Sua senha"
-            value={senha}
-            onChange={setSenha}
-            isRequired
-            errorMessage={errors.senha}
-          />
-          <div className="flex justify-end">
-            <button
-              type="button"
-              className="text-sm text-mauve hover:underline transition-colors"
-            >
-              Esqueci minha senha
-            </button>
-          </div>
-        </div>
-
-        <div className="mt-2">
-          <ESButton size="lg" fullWidth onPress={handleLogin}>
-            Entrar
-          </ESButton>
-        </div>
-      </div>
-
-      {/* Divider com "ou" */}
-      <div className="my-6 flex items-center gap-3">
-        <ESDivider className="flex-1" />
-        <span className="text-xs text-plum/40">ou</span>
-        <ESDivider className="flex-1" />
-      </div>
-
-      {/* WhatsApp */}
-      <ESButton
-        variant="secondary"
-        size="lg"
-        fullWidth
-        startContent={<WhatsAppIcon />}
-      >
-        Entrar com WhatsApp
-      </ESButton>
-
-      {/* Link cadastro */}
-      <p className="mt-8 text-center text-sm text-plum/60">
-        Ainda nao tenho conta &mdash;{' '}
-        <Link href="/cadastro" className="font-medium text-mauve hover:underline">
+      {/* Top bar */}
+      <div className="relative z-10 px-5 pt-6 flex items-center justify-between">
+        <Link
+          href="/landing"
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm transition-all hover:bg-white/20 text-cream"
+        >
+          <IconArrowLeft />
+        </Link>
+        <Link href="/cadastro" className="text-sm text-cream/60 hover:text-cream transition-colors">
           Criar conta
         </Link>
-      </p>
-    </Container>
+      </div>
+
+      {/* Center content */}
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-8">
+        {/* Logo */}
+        <img src="/logo-entreser.png" alt="entre ser" className="h-10 mb-3" />
+        <p className="text-cream/40 text-sm mb-10">Bem-vinda de volta</p>
+
+        {/* Form */}
+        <div className="w-full max-w-sm space-y-4">
+          {/* Email field */}
+          <div>
+            <label className="block text-[11px] font-medium uppercase tracking-wider text-cream/40 mb-2">E-mail</label>
+            <div className="flex items-center gap-3 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 px-4 py-3.5 focus-within:border-cream/30 focus-within:bg-white/15 transition-all">
+              <IconMail />
+              <input
+                type="email"
+                placeholder="maria@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="off" className="flex-1 bg-transparent text-sm text-cream placeholder:text-cream/25 focus:outline-none"
+              />
+            </div>
+            {errors.email && <p className="text-xs text-mauve-soft mt-1.5">{errors.email}</p>}
+          </div>
+
+          {/* Password field */}
+          <div>
+            <label className="block text-[11px] font-medium uppercase tracking-wider text-cream/40 mb-2">Senha</label>
+            <div className="flex items-center gap-3 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 px-4 py-3.5 focus-within:border-cream/30 focus-within:bg-white/15 transition-all">
+              <IconLock />
+              <input
+                type="password"
+                placeholder="Sua senha"
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
+                autoComplete="off" className="flex-1 bg-transparent text-sm text-cream placeholder:text-cream/25 focus:outline-none"
+              />
+            </div>
+            {errors.senha && <p className="text-xs text-mauve-soft mt-1.5">{errors.senha}</p>}
+            <div className="flex justify-end mt-2">
+              <button type="button" className="text-xs text-cream/40 hover:text-cream/70 transition-colors">
+                Esqueci minha senha
+              </button>
+            </div>
+          </div>
+
+          {/* Login button */}
+          <button
+            type="button"
+            onClick={handleLogin}
+            className="w-full flex items-center justify-center gap-2 rounded-full py-4 text-base font-medium text-plum bg-cream shadow-lg transition-all hover:bg-cream-mid active:scale-[0.97] mt-2"
+          >
+            Entrar
+            <IconArrowRight />
+          </button>
+        </div>
+      </div>
+
+      {/* Bottom link */}
+      <div className="relative z-10 pb-8 text-center">
+        <p className="text-sm text-cream/30">
+          Não tem conta?{' '}
+          <Link href="/cadastro" className="font-medium text-cream/60 hover:text-cream transition-colors">
+            Criar conta
+          </Link>
+        </p>
+      </div>
+    </div>
   )
 }
